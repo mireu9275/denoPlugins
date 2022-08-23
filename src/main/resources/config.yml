@@ -1,2 +1,9 @@
+MySQL:
+  host: localhost
+  port: 3306
+  user: root
+  password: Rambo4094!
+  database: MINECRAFT_POKEMON
+
 메시지:
-  error: §4잘못된 명령어 입니다!
+  error: §4§l잘못된 명령어 입니다!
