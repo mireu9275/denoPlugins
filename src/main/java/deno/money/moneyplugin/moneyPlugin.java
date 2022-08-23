@@ -40,12 +40,12 @@ public final class moneyPlugin extends JavaPlugin {
         user = config.getConfig().getString("MySQL.user");
         password = config.getConfig().getString("MySQL.password");
         database = config.getConfig().getString("MySQL.database");
-        url = "jdbc:mysql://" + host + ":" + port + "/" + database;
+        url = "jdbc:mysql://" + host + ":" + port + "/" + database + "?useSSL=false";
 
         mysql = new MySQL(this, url, user, password);
 
         boolean result = this.mysql.conn_test();
-        if(result == false){
+        if(!result){
             throw new RuntimeException("MySQL conn error");
         }
     }
