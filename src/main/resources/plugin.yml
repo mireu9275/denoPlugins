@@ -1,5 +1,4 @@
 name: Plugins
 version: '${project.version}'
-main: deno.money.moneyplugin.moneyPlugin
+main: deno.plugin.Plugin
 api-version: 1.16
-commands:

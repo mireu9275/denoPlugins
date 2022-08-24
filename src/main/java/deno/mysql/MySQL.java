@@ -1,18 +1,18 @@
-package deno.money.mysql;
+package deno.mysql;
 
-import deno.money.moneyplugin.*;
+import deno.plugin.*;
 
 import org.bukkit.ChatColor;
 
 import java.sql.*;
 
 public class MySQL {
-    final moneyPlugin plugin;
+    final Plugin plugin;
     final String url;
     final String user;
     final String password;
 
-    public MySQL(moneyPlugin plugin,String url, String user, String password){
+    public MySQL(Plugin plugin, String url, String user, String password){
         this.plugin = plugin;
         this.url = url;
         this.user = user;

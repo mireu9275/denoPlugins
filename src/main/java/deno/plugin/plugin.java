@@ -1,13 +1,13 @@
-package deno.money.moneyplugin;
+package deno.plugin;
 
-import deno.money.config.*;
-import deno.money.mysql.*;
+import deno.config.Config;
+import deno.mysql.MySQL;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 
-public final class moneyPlugin extends JavaPlugin {
+public final class Plugin extends JavaPlugin {
 
     private MySQL mysql;
     private Config config;
@@ -23,7 +23,7 @@ public final class moneyPlugin extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        getLogger().info(ChatColor.AQUA + "[돈 플러그인 로딩 완료]");
+        getLogger().info(ChatColor.AQUA + "[플러그인 로딩 완료]");
 
         config = new Config(this,"Config.yml");
 
@@ -52,12 +52,12 @@ public final class moneyPlugin extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        getLogger().info(ChatColor.AQUA + "[돈 플러그인 언로딩 완료]");
+        getLogger().info(ChatColor.AQUA + "[플러그인 언로딩 완료]");
     }
 
-    private static moneyPlugin instance;
-    public moneyPlugin(){instance = this;}
-    public static moneyPlugin getInstance(){return instance;}
+    private static Plugin instance;
+    public Plugin(){instance = this;}
+    public static Plugin getInstance(){return instance;}
     public MySQL mysql(){
         return this.mysql;
     }
