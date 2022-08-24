@@ -19,7 +19,7 @@ public class MySQL {
         this.password = password;
     }
 
-    public boolean conn_test(){
+    public boolean conn_test(String UUID){
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -27,7 +27,7 @@ public class MySQL {
         try {
             conn = DriverManager.getConnection(url,user,password);
             pstmt = conn.prepareStatement(url);
-            String Query = "SELECT * FROM USER_MAST WHERE UUID = 'TESTUUID'";
+            String Query = "SELECT * FROM USER_MAST WHERE UUID = '" + UUID + "'";
             //int success = pstmt.executeUpdate(Query); //반영된 레코드의 건수를 반환함.
             rs = pstmt.executeQuery(Query);
             rs.next();

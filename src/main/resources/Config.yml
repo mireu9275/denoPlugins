@@ -6,4 +6,5 @@ MySQL:
   database: MINECRAFT_POKEMON
 
 메시지:
-  error: §4§l잘못된 명령어 입니다!
+  error: §c§l잘못된 명령어 입니다!
+

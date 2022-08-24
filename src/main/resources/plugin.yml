@@ -1,4 +1,12 @@
-name: Plugins
+name: denoPlugin
 version: '${project.version}'
 main: deno.plugin.Plugin
 api-version: 1.16
+
+commands:
+  money:
+    description: money
+    usage: /money
+  돈:
+    description: 돈
+    usage: /돈
