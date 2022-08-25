@@ -1,14 +1,13 @@
 package deno.plugin;
 
 import deno.config.Config;
-import deno.mysql.MySQL;
+import deno.event.Event;
+import deno.mysql.*;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import java.util.UUID;
 
 public final class Plugin extends JavaPlugin {
 
@@ -23,6 +22,10 @@ public final class Plugin extends JavaPlugin {
     @Override
     public void onEnable() {
         getLogger().info(ChatColor.AQUA + "[플러그인 로딩 완료]");
+
+        Event.setPlugin(this);  Event event = new Event();
+        getServer().getPluginManager().registerEvents(event,this);
+
 
         config = new Config(this,"Config.yml");
         money = new Config(this, "Money.yml");
@@ -61,8 +64,6 @@ public final class Plugin extends JavaPlugin {
     public boolean onCommand (CommandSender sender, Command cmd, String label, String[] args){
         if (label.equalsIgnoreCase("돈") || label.equalsIgnoreCase("money")){
             Player p = (Player) sender;
-            UUID pUUID = p.getUniqueId();
-
             //args[4]까지 연동되게 만들기.
             if (args.length == 4){
                 if(args[1].equalsIgnoreCase("보내기")) {

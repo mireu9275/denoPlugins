@@ -8,9 +8,9 @@ import java.sql.*;
 
 public class MySQL {
     final Plugin plugin;
-    final String url;
-    final String user;
-    final String password;
+    public static String url;
+    public static String user;
+    public static String password;
 
     public MySQL(Plugin plugin, String url, String user, String password){
         this.plugin = plugin;
@@ -23,7 +23,6 @@ public class MySQL {
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
-        boolean result = false;
         try {
             conn = DriverManager.getConnection(url,user,password);
             pstmt = conn.prepareStatement(url);
@@ -34,9 +33,9 @@ public class MySQL {
             String uuid = rs.getString("UUID");
             if(uuid == null){//mySQL_conn_error
                 plugin.getLogger().info(ChatColor.RED + "MySQL에 접속 실패하였습니다.");
+                return false;
             }else { //mySQL_conn_success
                 plugin.getLogger().info(ChatColor.YELLOW + "MySQL에 접속하였습니다.");
-                result = true;
             }
         }catch (SQLException e){
             e.printStackTrace();
@@ -49,6 +48,30 @@ public class MySQL {
                 e.printStackTrace();
             }
         }
-        return result;
+        return true;
+    }
+
+    public void pFirstJoin(String uuid, String name){
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        try{
+            conn = DriverManager.getConnection(url,user,password);
+            pstmt = conn.prepareStatement(url);
+            String Query = "CALL SP_PFIRSTJOIN('" + uuid + "','" + name + "')";
+            plugin.getLogger().info(Query);
+            rs = pstmt.executeQuery(Query);
+            rs.next();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }finally {
+            try{
+                if(conn != null) conn.close();
+                if(pstmt != null) pstmt.close();
+                if(rs != null) rs.close();
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
+        }
     }
 }
