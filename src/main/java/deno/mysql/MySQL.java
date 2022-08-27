@@ -14,9 +14,9 @@ public class MySQL {
 
     public MySQL(Plugin plugin, String url, String user, String password){
         this.plugin = plugin;
-        this.url = url;
-        this.user = user;
-        this.password = password;
+        MySQL.url = url;
+        MySQL.user = user;
+        MySQL.password = password;
     }
 
     public boolean conn_test(String UUID){
@@ -59,9 +59,7 @@ public class MySQL {
             conn = DriverManager.getConnection(url,user,password);
             pstmt = conn.prepareStatement(url);
             String Query = "CALL SP_PFIRSTJOIN('" + uuid + "','" + name + "')";
-            plugin.getLogger().info(Query);
             rs = pstmt.executeQuery(Query);
-            rs.next();
         }catch (SQLException e){
             e.printStackTrace();
         }finally {
